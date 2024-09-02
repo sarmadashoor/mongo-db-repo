@@ -1,0 +1,6 @@
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore any data directories (if used)
+data/
