@@ -1,0 +1,60 @@
+Directory tree for: c:\Users\Owner\Desktop\craft_demo\craft_demo
+            |-- __init__.py
+            |-- admin.py
+            |-- apps.py
+            |-- models.py
+            |-- urls.py
+            |-- views.py
+        |-- __init__.py
+        |-- example_app
+        |-- __init__.py
+        |-- asgi.py
+        |-- settings.py
+        |-- urls.py
+        |-- wsgi.py
+    |-- Dockerfile
+    |-- apps
+    |-- config
+    |-- manage.py
+    |-- requirements.txt
+    |-- static
+    |-- templates
+    |-- tree-script.py
+    |-- Dockerfile
+        |-- server.js
+    |-- Dockerfile
+    |-- app
+    |-- package.json
+    |-- Dockerfile
+    |-- init.sql
+        |-- favicon.ico
+        |-- index.html
+        |-- logo192.png
+        |-- logo512.png
+        |-- manifest.json
+        |-- robots.txt
+        |-- App.css
+        |-- App.js
+        |-- App.test.js
+        |-- index.css
+        |-- index.js
+        |-- logo.svg
+        |-- reportWebVitals.js
+        |-- setupTests.js
+    |-- Dockerfile
+    |-- README.md
+    |-- package-lock.json
+    |-- package.json
+    |-- public
+    |-- src
+|-- README.md
+|-- directory_tree.txt
+|-- django
+|-- docker-compose.yml
+|-- file_tree.txt
+|-- mongo
+|-- node
+|-- postgres
+|-- react-app
+|-- setup_django_skeleton.ps1
+|-- setup_project.ps1

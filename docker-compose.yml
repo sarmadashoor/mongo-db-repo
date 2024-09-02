@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  postgres:
+    build: ./postgres
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_project_network
+
+  mongo:
+    build: ./mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - my_project_network
+
+  django:
+    build: ./django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - mongo
+    networks:
+      - my_project_network
+
+  node:
+    build: ./node
+    command: npm start
+    volumes:
+      - ./node:/app
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+      - mongo
+    networks:
+      - my_project_network
+
+  react-app:
+    build: ./react-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - django
+      - node
+    networks:
+      - my_project_network
+
+volumes:
+  postgres_data:
+  mongo_data:
+
+networks:
+  my_project_network:
