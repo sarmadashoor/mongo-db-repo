@@ -25,9 +25,10 @@ services:
 
   django:
     build: ./django
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ["./scripts/wait-for-it.sh", "${DJANGO_DB:-postgres}:${DJANGO_DB_PORT:-5432}", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - ./django:/app
+      - ./scripts:/scripts
     ports:
       - "8000:8000"
     depends_on:
@@ -35,12 +36,21 @@ services:
       - mongo
     networks:
       - my_project_network
+    environment:
+      DB_HOST: ${DJANGO_DB:-postgres}
+      DB_PORT: ${DJANGO_DB_PORT:-5432}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      MONGO_HOST: ${MONGO_HOST}
+      MONGO_PORT: ${MONGO_PORT}
 
   node:
     build: ./node
-    command: npm start
+    command: ["./scripts/wait-for-it.sh", "${NODE_DB:-mongo}:${NODE_DB_PORT:-27017}", "--", "npm", "start"]
     volumes:
       - ./node:/app
+      - ./scripts:/scripts
     ports:
       - "3001:3001"
     depends_on:
@@ -48,6 +58,14 @@ services:
       - mongo
     networks:
       - my_project_network
+    environment:
+      DB_HOST: ${NODE_DB:-mongo}
+      DB_PORT: ${NODE_DB_PORT:-27017}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      MONGO_HOST: ${MONGO_HOST}
+      MONGO_PORT: ${MONGO_PORT}
 
   react-app:
     build: ./react-app
