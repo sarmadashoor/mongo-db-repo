@@ -1,0 +1,8 @@
+# Ignore any environment variables or credentials
+.env
+
+# Ignore log files
+*.log
+
+# Ignore MacOS hidden files
+.DS_Store
